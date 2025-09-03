@@ -1,5 +1,6 @@
 package dev.ddanylenko.commands;
 
+import dev.ddanylenko.entities.Account;
 import dev.ddanylenko.enums.OperationCommand;
 import dev.ddanylenko.enums.OperationType;
 import dev.ddanylenko.services.AccountService;
@@ -10,17 +11,21 @@ import org.springframework.stereotype.Component;
 public class WithdrawAccountOperation implements OperationCommand {
 
     private final AccountService accountService;
-
+    private final AskService askService;
     @Autowired
-    public WithdrawAccountOperation(AccountService accountService) {
+    public WithdrawAccountOperation(AccountService accountService, AskService askService) {
         this.accountService = accountService;
+        this.askService = askService;
     }
 
     @Override
     public void execute() {
-        long accountId = 1;
-        double amount = 1;
-        accountService.accountWithdraw(accountId, amount);
+        Account account = askService.askID("Please, enter your account ID for withdraw. Or enter 0 to exit: ");
+        if(askService.checkAccount(account)){
+            return;
+        }
+        double amount = askService.askAmount("Please, amount of money to withdraw. Or enter 0 to exit: ");
+        accountService.accountWithdraw(account.getId(), amount);
     }
 
     @Override

@@ -1,27 +1,35 @@
 package dev.ddanylenko.commands;
 
+import dev.ddanylenko.entities.Account;
 import dev.ddanylenko.enums.OperationCommand;
 import dev.ddanylenko.enums.OperationType;
 import dev.ddanylenko.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Scanner;
+
 @Component
 public class AccountTransferOperation implements OperationCommand {
 
     private final AccountService accountService;
+    private final AskService askService;
 
     @Autowired
-    public AccountTransferOperation(AccountService accountService) {
+    public AccountTransferOperation(AccountService accountService, AskService askService) {
         this.accountService = accountService;
+        this.askService = askService;
     }
 
     @Override
     public void execute() {
-        long receiverAccountId = (long) 1;
-        long senderAccountId = (long) 1;
-        double amount = (double) 1;
-        accountService.accountTransfer(receiverAccountId, senderAccountId, amount);
+        Account senderAccount = askService.askID("Please, enter your account ID: ");
+        Account receiverAccount = askService.askID("Please, enter an receiver account ID: ");
+        if(askService.checkAccount(senderAccount, receiverAccount)){
+            return;
+        }
+        double amount = askService.askAmount("Please, amount of money to transfer. Or enter 0 to exit: ");
+        accountService.accountTransfer(receiverAccount.getId(), senderAccount.getId(), amount);
     }
 
     @Override
@@ -30,7 +38,4 @@ public class AccountTransferOperation implements OperationCommand {
     }
 
 
-    public void askArguments() {
-
-    }
 }

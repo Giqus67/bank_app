@@ -64,54 +64,61 @@ public class AccountService {
         }
     }
 
-    public boolean accountClose(long accountId){
+    public void accountClose(long accountId){
         Account account = findAccountById(accountId);
-        if(account != null){
-            return false;
-        }
         User user = userService.findUserById(account.getUserId());
-        if(user != null && user.getAccountList().size() > 1){
+        if(user.getAccountList().size() > 1){
             double value = user.getAccountList().getFirst().getMoneyAmount() + account.getMoneyAmount();
             user.getAccountList().getFirst().setMoneyAmount(value);
+            user.getAccountList().remove(account);
             userService.updateUser(user);
             deleteAccount(account);
+            System.out.println(user);
+
         }else{
-            return false;
+            System.out.println("You have only one account, you cannot delete this!");
         }
-        return true;
     }
 
-    public boolean deposit(long accountId, double amount) {
+    public void deposit(long accountId, double amount) {
         Account account = findAccountById(accountId);
-        if(account != null){
-            account.setMoneyAmount(account.getMoneyAmount() + amount);
-            updateAccount(account);
-            return true;
-        }
-        return false;
+        account.setMoneyAmount(account.getMoneyAmount() + amount);
+        updateAccount(account);
+        System.out.println(account);
     }
 
-    public boolean accountTransfer(long receiverAccountId, long senderAccountId, double amount) {
+    public void accountTransfer(long receiverAccountId, long senderAccountId, double amount) {
         Account accountSender = findAccountById(senderAccountId);
         Account accountReceiver = findAccountById(receiverAccountId);
-        if(accountSender != null && accountReceiver != null && accountSender.getMoneyAmount() >= amount){
-            double commission = amount * accountProperties.getDefaultCommission();
+        if(accountSender.getMoneyAmount() >= amount){
+            double commission = 0;
+            if(accountReceiver.getUserId() != accountSender.getUserId()){
+                commission = amount * accountProperties.getDefaultCommission();
+            }
             amount += commission;
             accountSender.setMoneyAmount(accountSender.getMoneyAmount() - amount);
             updateAccount(accountSender);
             accountReceiver.setMoneyAmount(accountReceiver.getMoneyAmount() + amount);
             updateAccount(accountReceiver);
-            return true;
+            System.out.println("Sender: ");
+            System.out.println(accountSender);
+            System.out.println("Receiver: ");
+            System.out.println(accountReceiver);
         }
-        return false;
+        else {
+            System.out.println("You have not enough money to transfer!");
+        }
     }
 
-    public boolean accountWithdraw(long accountId, double amount) {
+    public void accountWithdraw(long accountId, double amount) {
         Account account = findAccountById(accountId);
-        if(account != null && account.getMoneyAmount() >= amount){
+        if(account.getMoneyAmount() >= amount){
             account.setMoneyAmount(account.getMoneyAmount() - amount);
             updateAccount(account);
+            System.out.println(account);
         }
-        return false;
+        else {
+            System.out.println("You have not enough money to withdraw!");
+        }
     }
 }

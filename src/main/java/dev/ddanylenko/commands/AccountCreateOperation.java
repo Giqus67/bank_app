@@ -12,42 +12,16 @@ import java.util.Scanner;
 
 @Component
 public class AccountCreateOperation implements OperationCommand {
-    private AccountService accountService;
-    private UserService userService;
+    private final AskService askService;
 
     @Autowired
-    public AccountCreateOperation(AccountService accountService, UserService userService) {
-        this.accountService = accountService;
-        this.userService = userService;
+    public AccountCreateOperation(AskService askService) {
+        this.askService = askService;
     }
 
     @Override
     public void execute() {
-        boolean loop = true;
-        Scanner scanner = new Scanner(System.in);
-        long userId = 0;
-        while (loop){
-            System.out.print("Please, enter your account ID. Or enter 0 to exit: ");
-            if(!scanner.hasNextInt()){
-                System.out.println("You should enter an integer!");
-            }else{
-                userId = scanner.nextInt();
-                if(userId != 0){
-                    User user = userService.findUserById(userId);
-                    if(user != null){
-                        accountService.createAccount(userId);
-                        System.out.println(user);
-                        loop = false;
-                    }
-                    else{
-                        System.out.println("Account with this ID not found!");
-                    }
-                }
-                else{
-                    loop = false;
-                }
-            }
-        }
+       askService.askLogin();
     }
 
     @Override
