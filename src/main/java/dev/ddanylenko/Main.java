@@ -26,8 +26,7 @@ public class Main {
             while(!exit){
                 operationConsoleListener.printOperations();
                 String string = scanner.nextLine();
-                operationConsoleListener.findOperation(string);
-
+                exit =  operationConsoleListener.findOperation(string);
             }
         }
     }

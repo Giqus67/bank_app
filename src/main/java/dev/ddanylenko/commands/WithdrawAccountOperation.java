@@ -1,11 +1,13 @@
-package dev.ddanylenko.enums;
+package dev.ddanylenko.commands;
 
+import dev.ddanylenko.enums.OperationCommand;
+import dev.ddanylenko.enums.OperationType;
 import dev.ddanylenko.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WithdrawAccountOperation implements OperationCommand  {
+public class WithdrawAccountOperation implements OperationCommand {
 
     private final AccountService accountService;
 
@@ -15,14 +17,19 @@ public class WithdrawAccountOperation implements OperationCommand  {
     }
 
     @Override
-    public void execute(Object ... args) {
-        long accountId = (long) args[0];
-        double amount = (double) args[1];
+    public void execute() {
+        long accountId = 1;
+        double amount = 1;
         accountService.accountWithdraw(accountId, amount);
     }
 
     @Override
     public OperationType getOperationType() {
         return OperationType.ACCOUNT_WITHDRAW;
+    }
+
+
+    public void askArguments() {
+
     }
 }

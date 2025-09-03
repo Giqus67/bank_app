@@ -1,5 +1,7 @@
-package dev.ddanylenko.enums;
+package dev.ddanylenko.commands;
 
+import dev.ddanylenko.enums.OperationCommand;
+import dev.ddanylenko.enums.OperationType;
 import dev.ddanylenko.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,15 +17,20 @@ public class AccountTransferOperation implements OperationCommand {
     }
 
     @Override
-    public void execute(Object ... args) {
-        long receiverAccountId = (long) args[0];
-        long senderAccountId = (long) args[1];
-        double amount = (double) args[2];
+    public void execute() {
+        long receiverAccountId = (long) 1;
+        long senderAccountId = (long) 1;
+        double amount = (double) 1;
         accountService.accountTransfer(receiverAccountId, senderAccountId, amount);
     }
 
     @Override
     public OperationType getOperationType() {
         return OperationType.ACCOUNT_TRANSFER;
+    }
+
+
+    public void askArguments() {
+
     }
 }

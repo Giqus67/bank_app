@@ -26,6 +26,9 @@ public class AccountService {
 
     public Account createAccount(long userId) {
         Account account = new Account(userId, accountProperties.getDefaultAmount());
+        User user = userService.findUserById(userId);
+        user.getAccountList().add(account);
+        userService.updateUser(user);
         accountList.add(account);
         return account;
     }

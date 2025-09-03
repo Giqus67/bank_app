@@ -19,10 +19,6 @@ public class OperationConsoleListener   {
         commandList.forEach(command -> commandMap.put(command.getOperationType(), command));
     }
 
-    public int countOperations() {
-        return commandMap.size();
-    }
-
     public void printOperations(){
         int i = 1;
         for(OperationType type : commandMap.keySet()){
@@ -31,10 +27,11 @@ public class OperationConsoleListener   {
             i++;
         }
         System.out.println(i + " - EXIT");
-        System.out.print("Please, select operation 1-"+ i + ":");
+        System.out.print("\nPlease, select operation 1-"+ i + ":");
     }
 
-    public void findOperation(String operation){
+    public boolean findOperation(String operation){
+        System.out.println("\n");
         int i = 1;
         int number = 0;
         boolean found = false;
@@ -44,17 +41,23 @@ public class OperationConsoleListener   {
         for(OperationType type : commandMap.keySet()){
             OperationCommand command = commandMap.get(type);
             if(command.getOperationType().toString().equalsIgnoreCase(operation)){
-                System.out.println(command.getOperationType());
+                command.execute();
                 found = true;
             }
             if (i == number){
-                System.out.println(command.getOperationType());
+                command.execute();
                 found = true;
             }
             i++;
         }
+        if(number == i || operation.equalsIgnoreCase("exit")){
+            return true;
+        }
         if(!found){
             System.out.println("Operation not found, please write again.");
         }
+        System.out.println("\n------------------------------------------\n");
+        return false;
     }
+
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class User {
 
-    public static long idCounter = 0;
+    public static long idCounter = 1;
 
     private final long id;
 

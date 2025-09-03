@@ -1,5 +1,7 @@
-package dev.ddanylenko.enums;
+package dev.ddanylenko.commands;
 
+import dev.ddanylenko.enums.OperationCommand;
+import dev.ddanylenko.enums.OperationType;
 import dev.ddanylenko.services.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,13 +17,17 @@ public class CloseAccountOperation implements OperationCommand {
     }
 
     @Override
-    public void execute(Object ... args) {
-        long accountId = (long) args[0];
+    public void execute() {
+        long accountId = (long) 1;
         accountService.accountClose(accountId);
     }
 
     @Override
     public OperationType getOperationType() {
         return OperationType.ACCOUNT_CLOSE;
+    }
+
+    public void askArguments() {
+
     }
 }

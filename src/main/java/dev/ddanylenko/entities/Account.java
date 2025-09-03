@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 public class Account {
 
-    public static long idCounter = 0;
+    public static long idCounter = 1;
 
     private final long id;
 

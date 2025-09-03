@@ -11,14 +11,14 @@ import java.util.List;
 @Service
 public class UserService {
 
+    private List<User> users = new ArrayList<>();
 
-
-    private List<User> users;
-
-    public User create_user(String login){
-        for(User user : users){
-            if(user.getLogin().equals(login)){
-                return null;
+    public User createUser(String login){
+        if(users != null){
+            for(User user : users){
+                if(user.getLogin().equals(login)){
+                    return null;
+                }
             }
         }
         User user = new User(login);
