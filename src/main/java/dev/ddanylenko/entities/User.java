@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
 public class User {
 
     public static long idCounter = 0;
@@ -14,15 +13,12 @@ public class User {
 
     private final String login;
 
-    private List<Account> accountList;
+    private List<Account> accountList = new ArrayList<>();
 
 
     public User(String login) {
         this.id = idCounter++;
         this.login = login;
-        List<Account> accountList = new ArrayList<Account>();
-        accountList.add(new Account(this.id));
-        this.accountList = accountList;
     }
 
     public long getId() {
@@ -35,6 +31,10 @@ public class User {
 
     public List<Account> getAccountList() {
         return accountList;
+    }
+
+    public void setAccountList(List<Account> accountList) {
+        this.accountList = accountList;
     }
 
     @Override

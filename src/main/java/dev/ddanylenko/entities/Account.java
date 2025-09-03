@@ -1,9 +1,10 @@
 package dev.ddanylenko.entities;
 
+import dev.ddanylenko.configurations.AccountProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
 public class Account {
 
     public static long idCounter = 0;
@@ -12,15 +13,16 @@ public class Account {
 
     private final long userId;
 
-    @Value("${account.default-amount}")
     private double moneyAmount;
 
-    
-
-    public Account(long userId) {
+    public Account(long userId, double moneyAmount) {
         this.id = idCounter++;
         this.userId = userId;
-        this.moneyAmount = 0;
+        this.moneyAmount = moneyAmount;
+    }
+
+    public void setMoneyAmount(double moneyAmount) {
+        this.moneyAmount = moneyAmount;
     }
 
     public static long getIdCounter() {
