@@ -12,25 +12,18 @@ import java.util.List;
 public class UserService {
 
 
-    private final AccountService accountService;
 
     private List<User> users;
 
-    @Autowired
-    public UserService(AccountService accountService) {
-        this.accountService = accountService;
-    }
-
-    public boolean create_user(String login){
+    public User create_user(String login){
         for(User user : users){
             if(user.getLogin().equals(login)){
-                return false;
+                return null;
             }
         }
         User user = new User(login);
-        user.getAccountList().add(accountService.createAccount(user.getId()));
         users.add(user);
-        return true;
+        return user;
     }
 
     public List<User> getAll_users(){
