@@ -1,9 +1,7 @@
-package dev.ddanylenko.commands;
+package dev.ddanylenko.services;
 
 import dev.ddanylenko.entities.Account;
 import dev.ddanylenko.entities.User;
-import dev.ddanylenko.services.AccountService;
-import dev.ddanylenko.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,18 +10,19 @@ import java.util.Scanner;
 @Component
 public class AskService {
 
+    private final Scanner scanner;
     private final AccountService accountService;
     private final UserService userService;
 
     @Autowired
-    public AskService(AccountService accountService, UserService userService) {
+    public AskService(AccountService accountService, UserService userService, Scanner scanner) {
+        this.scanner = scanner;
         this.userService = userService;
         this.accountService = accountService;
     }
 
     public void askLogin(){
         boolean loop = true;
-        Scanner scanner = new Scanner(System.in);
         long userId = 0;
         while (loop){
             System.out.print("Please, enter your user ID. Or enter 0 to exit: ");
@@ -52,7 +51,6 @@ public class AskService {
 
     public Account askID(String string) {
         boolean loop = true;
-        Scanner scanner = new Scanner(System.in);
         Account account = null;
         long accountId = 0;
         while (loop){
@@ -88,7 +86,6 @@ public class AskService {
 
     public double askAmount(String string) {
         boolean loop = true;
-        Scanner scanner = new Scanner(System.in);
         double amount = 0;
         while (loop){
             System.out.print(string);

@@ -4,10 +4,9 @@ import dev.ddanylenko.entities.Account;
 import dev.ddanylenko.enums.OperationCommand;
 import dev.ddanylenko.enums.OperationType;
 import dev.ddanylenko.services.AccountService;
+import dev.ddanylenko.services.AskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Scanner;
 
 @Component
 public class AccountTransferOperation implements OperationCommand {

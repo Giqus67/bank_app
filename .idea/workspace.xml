@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f7f2a510-3974-4bcd-82b4-8313ce688a13" name="Changes" comment="Updated command pattern logic and added function to check list of users, create user and accounts.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/AskService.java" afterDir="false" />
+    <list default="true" id="f7f2a510-3974-4bcd-82b4-8313ce688a13" name="Changes" comment="Final version of bank-app. Fixed bugs, added AskService to ask user data from console.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/AccountCreateOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/AccountCreateOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/AccountDepositOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/AccountDepositOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/AccountTransferOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/AccountTransferOperation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/AskService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/services/AskService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/CloseAccountOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/CloseAccountOperation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/WithdrawAccountOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/commands/WithdrawAccountOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/services/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/services/AccountService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/configurations/PropertiesConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/ddanylenko/configurations/PropertiesConfiguration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,20 +40,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.ddanylenko.Main" />
@@ -91,7 +91,8 @@
       <option name="presentableId" value="Default" />
       <updated>1756884431652</updated>
       <workItem from="1756884432791" duration="9723000" />
-      <workItem from="1756910238118" duration="8937000" />
+      <workItem from="1756910238118" duration="9820000" />
+      <workItem from="1756970711846" duration="477000" />
     </task>
     <task id="LOCAL-00001" summary="initialized bank-app project">
       <option name="closed" value="true" />
@@ -141,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1756915178120</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Final version of bank-app. Fixed bugs, added AskService to ask user data from console.">
+      <option name="closed" value="true" />
+      <created>1756930897358</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1756930897358</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +174,7 @@
     <MESSAGE value="Added enum, interface and implementations of interface to have ability to work with console" />
     <MESSAGE value="Updated enums by adding command pattern" />
     <MESSAGE value="Updated command pattern logic and added function to check list of users, create user and accounts." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated command pattern logic and added function to check list of users, create user and accounts." />
+    <MESSAGE value="Final version of bank-app. Fixed bugs, added AskService to ask user data from console." />
+    <option name="LAST_COMMIT_MESSAGE" value="Final version of bank-app. Fixed bugs, added AskService to ask user data from console." />
   </component>
 </project>
